@@ -7,30 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users</title>
     <link rel="stylesheet" href="{% static "css/mystyle.css" %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"
+    />
 </head>
 <body>
-    <h1>Add a new user:</h1>
+    <div class="container">
+        <h1>Please sign up here!</h1>
         <form method="POST">
-            {{ user_form.as_p }}
+            {{ form.as_p }}
             {% csrf_token %}
-            <input type="submit" class="btn btn-primary" value="submit" />
-        </form> 
-    <h1>Here are the list of Users</h1>
-    <div>
-        {% if users %}
-            <ol>
-                {% for person in users %}
-                    <li>User Info</li>
-                        <ul>
-                            <li>First Name: {{ person.first_name }}</li>
-                            <li>Last Name: {{ person.last_name }}</li>
-                            <li>Email: {{ person.email }}</li>
-                        </ul>
-                {% endfor %}
-            </ol>>
-        {% else %}
-            <p>No Users Found</p>
-        {% endif %}
+            <input type="submit" class='btn btn-primary' value="submit" />
+        </form>
     </div>
 </body>
 </html>

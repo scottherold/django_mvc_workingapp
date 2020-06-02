@@ -29,15 +29,13 @@ def users(request):
     # Create a form
     form = UserForm()
 
-    # Query for Users
-    user_list = User.objects.order_by('email')
-    users_context = {'users': user_list, 'user_form': form}
-
     # Validators/Save to DB
     if request.method == 'POST':
         form = UserForm(request.POST)
-        form.save()
-        form = UserForm()
-        return render(request, 'AppTwo/users.html', context=users_context)
 
-    return render(request, 'AppTwo/users.html', context=users_context)
+        if form.is_valid():
+            form.save()
+            return index(request)
+        else:
+            print('ERROR INVALID FORM')
+    return render(request, 'AppTwo/users.html', context={'form': form})
